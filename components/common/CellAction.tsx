@@ -14,12 +14,15 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useInvoiceData, useModal } from "@/hooks/invoice";
 
 export const CellAction: React.FC<any> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { isOpen, setIsOpen }: any = useModal();
+  const { setInvoiceData }: any = useInvoiceData();
 
   const onConfirm = async () => {
     // try {
@@ -37,7 +40,7 @@ export const CellAction: React.FC<any> = ({ data }) => {
 
   const onCopy = (id: string) => {
     navigator.clipboard.writeText(id);
-    toast.success("Color ID copied to clipboard.");
+    toast.success("Invoice Id copied");
   };
 
   return (
@@ -50,16 +53,20 @@ export const CellAction: React.FC<any> = ({ data }) => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuLabel>
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-          </DropdownMenuLabel>
+          <DropdownMenuLabel>Actions</DropdownMenuLabel>
           <DropdownMenuItem onClick={() => onCopy(data.invoice)}>
-            <Copy className="mr-2 h-4 w-4" /> Copy Id
+            <Copy className="mr-2 h-4 w-4" /> Copy Invoice
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => router.push("/")}>
+          {/* <DropdownMenuItem onClick={() => router.push("/")}>
             <Edit className="mr-2 h-4 w-4" /> Update
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setOpen(true)}>
+          </DropdownMenuItem> */}
+          <DropdownMenuItem
+            onClick={() => {
+              console.log(data);
+              setInvoiceData(data);
+              setIsOpen(true);
+            }}
+          >
             <Trash className="mr-2 h-4 w-4" /> Delete
           </DropdownMenuItem>
         </DropdownMenuContent>

@@ -22,7 +22,7 @@ export const invoiceColumns: ColumnDef<any>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Date
-          <ArrowUpDown className="h-4 w-4 translate-x-2"/>
+          <ArrowUpDown className="h-4 w-4 translate-x-2" />
         </Button>
       );
     },
@@ -38,7 +38,7 @@ export const invoiceColumns: ColumnDef<any>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Invoice no
-          <ArrowUpDown className="h-4 w-4 translate-x-2"/>
+          <ArrowUpDown className="h-4 w-4 translate-x-2" />
         </Button>
       );
     },
@@ -52,8 +52,8 @@ export const invoiceColumns: ColumnDef<any>[] = [
     accessorKey: "gross",
     header: "Gross total",
   },
-  //   {
-  //     id: "actions",
-  //     cell: ({ row }) => <CellAction data={row.original} />
-  //   },
+  {
+    id: "actions",
+    cell: ({ row }) => <CellAction data={row.original} />,
+  },
 ];

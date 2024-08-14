@@ -14,6 +14,7 @@ import { DataTable } from "../invoiceDataTable/data-table";
 import { invoiceColumns } from "../invoiceDataTable/columns";
 import { useAuth } from "@clerk/nextjs";
 import { api } from "@/lib/server";
+import DeleteDialog from "../dialogs/DeleteDialog";
 
 const InvocieTable = () => {
   const { userId } = useAuth();
@@ -41,6 +42,7 @@ const InvocieTable = () => {
   };
   return (
     <div className="xl:w-[80%] h-full w-[98%] justify-center flex flex-col">
+      <DeleteDialog />
       <DataTable columns={invoiceColumns} data={invoices} />
     </div>
   );
