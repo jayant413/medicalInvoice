@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { api } from "@/lib/server";
 
 const DeleteDialog = () => {
   const { isOpen, setIsOpen }: any = useModal();
@@ -22,9 +23,7 @@ const DeleteDialog = () => {
 
   const handleDelete = () => {
     try {
-      const response = axios.delete(
-        `http://localhost:8000/invoices/${invoiceData._id}`
-      );
+      const response = axios.delete(`${api}/invoices/${invoiceData._id}`);
       toast.success("Invoice deleted successfully");
       setIsOpen(false);
       router.refresh();
