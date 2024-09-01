@@ -32,7 +32,7 @@ import { api } from "@/lib/server";
 
 const formSchema = z.object({
   date: z.date().optional(),
-  invoice: z.string().min(2).max(50),
+  invoice: z.string().min(2).max(5000),
   taxable: z.string().min(2).max(50),
   gross: z.string().min(2).max(50),
   userId: z.string().min(2).max(50),
